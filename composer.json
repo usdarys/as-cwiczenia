@@ -1,0 +1,8 @@
+{
+    "name": "rysiu/as-cwiczenia",
+    "description": "Cwiczenia z przedmiotu Aplikacje sieciowe",
+    "type": "project",
+    "require": {
+        "smarty/smarty": "^3.1"
+    }
+}
