@@ -2,6 +2,7 @@
 
 require_once dirname(__FILE__) . '/../../config.php';
 require_once _ROOT_PATH . '/utils/utils.php';
+require _ROOT_PATH . '/vendor/smarty/smarty/libs/Smarty.class.php';
 
 include _ROOT_PATH . '/app/login/auth.php';
 
@@ -17,8 +18,22 @@ if (validateCalculatorParams($amount, $numberOfYears, $interest, $messages)) {
 	$installment = calculateCreditInstallment($amount, $numberOfYears, $interest);
 }
 
-include 'creditCalculatorView.php';
+$smarty = new Smarty;
 
+$smarty->assign('amount', $amount);
+$smarty->assign('numberOfYears', $numberOfYears);
+$smarty->assign('interest', $interest);
+$smarty->assign('installment', $installment);
+$smarty->assign('messages', $messages);
+$smarty->assign('appUrl', _APP_URL);
+
+// z jakiego tajemniczego powodu sama nazwa pliku nie działa (chociaż jest w tym samym katalogu) 
+// i musi tutaj byc taka ścieżka
+$smarty->display('../app/creditCalculator/creditCalculatorView.tpl');
+
+// ---------
+// Functions
+// ---------
 
 function getCalculatorParams(&$amount, &$numberOfYears, &$interest) {
 	$amount = isset($_REQUEST['amount']) ? $_REQUEST['amount'] : null;
