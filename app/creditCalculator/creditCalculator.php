@@ -1,8 +1,7 @@
 <?php
 
-require_once dirname(__FILE__) . '/../../config.php';
-require_once _ROOT_PATH . '/utils/utils.php';
-require _ROOT_PATH . '/vendor/smarty/smarty/libs/Smarty.class.php';
+require_once dirname(__FILE__) . '/../../config/config.php';
+require_once _ROOT_PATH . '/vendor/smarty/smarty/libs/Smarty.class.php';
 
 include _ROOT_PATH . '/app/login/auth.php';
 
@@ -27,9 +26,7 @@ $smarty->assign('installment', $installment);
 $smarty->assign('messages', $messages);
 $smarty->assign('appUrl', _APP_URL);
 
-// z jakiego tajemniczego powodu sama nazwa pliku nie działa (chociaż jest w tym samym katalogu) 
-// i musi tutaj byc taka ścieżka
-$smarty->display('../app/creditCalculator/creditCalculatorView.tpl');
+$smarty->display(dirname(__FILE__) . '/creditCalculatorView.tpl');
 
 // ---------
 // Functions

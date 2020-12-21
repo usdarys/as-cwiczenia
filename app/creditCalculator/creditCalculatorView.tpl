@@ -1,4 +1,4 @@
-{extends file="../../templates/main.tpl"}
+{extends file="../shared/main.tpl"}
 
 {block name=body}
 	<div style="width:90%; margin: 2em auto;">
