@@ -17,4 +17,4 @@
     cd as-cwiczenia
     composer install
     cd public
-    npm -i
+    npm install
