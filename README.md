@@ -3,6 +3,7 @@
 ## Zrealizowane ćwiczenia:
 1. Lab 02 - Dorobienie kalkulatora kredytowego
 2. Lab 03 - Ochrona dostępu do kalkulatora kredytowego
+3. Lab 04 - Szablon Smarty
 ## Instalacja projektu
 ### Wymagania:
 1. [Apache](https://httpd.apache.org/)
