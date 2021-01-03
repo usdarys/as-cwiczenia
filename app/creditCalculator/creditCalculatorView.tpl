@@ -1,35 +1,42 @@
 {extends file="../shared/main.tpl"}
 
 {block name=body}
-	<div style="width:90%; margin: 2em auto;">
-		<a href="{$appUrl}/app/login/login.php" class="pure-button pure-button-active">Wyloguj</a>
+<nav class="navbar bg-light border-bottom d-flex justify-content-end">
+	<a href="{$appUrl}/app/login/login.php" class="btn btn-link">Wyloguj</a>
+</nav>
+
+<main>
+	<div class="container d-flex justify-content-center credit-calc-form flex-column">
+			<form action="{$appUrl}/app/creditCalculator/creditCalculator.php" method="post" class="mt-5 w-100">
+				<legend class="text-center mb-3">Kalkulator kredytowy</legend>
+				<div class="form-group">
+					<label for="amount">Kwota: </label>
+					<input id="amount" type="text" name="amount" value="{$amount}" class="form-control"/>
+				</div>
+				<div class="form-group">
+					<label for="numberOfYears">Liczba lat: </label>
+					<input id="numberOfYears" type="text" name="numberOfYears" value="{$numberOfYears}" class="form-control"/>
+				</div>
+				<div class="form-group">
+					<label for="interest">Oprocentowanie: </label>
+					<input id="interest" type="text" name="interest" value="{$interest}" class="form-control"/>
+				</div>
+
+				{if isset($messages)}
+					{if !empty($messages)}
+						{foreach $messages as $msg}
+							<div class="alert alert-danger mb-1">{$msg}</div>
+						{/foreach}
+					{/if}
+				{/if}
+
+				<input type="submit" value="Oblicz miesięczną ratę" class="btn btn-primary mt-2"/>
+			</form>	
+
+			{if isset($installment)}
+				<div class="alert alert-info mt-2">Miesięczna rata kredytu wynosi: {$installment}</div>
+			{/if}
 	</div>
-
-	<div style="width:90%; margin: 2em auto;">
-	<form action="{$appUrl}/app/creditCalculator/creditCalculator.php" method="post">
-		<label for="amount">Kwota: </label>
-		<input id="amount" type="text" name="amount" value="{$amount}" /><br />
-		<label for="numberOfYears">Liczba lat: </label>
-		<input id="numberOfYears" type="text" name="numberOfYears" value="{$numberOfYears}" /><br />
-		<label for="interest">Oprocentowanie: </label>
-		<input id="interest" type="text" name="interest" value="{$interest}" /><br />
-		<input type="submit" value="Oblicz" />
-	</form>	
-
-	{if isset($messages)}
-		{if !empty($messages)}
-			<ol style="margin: 20px; padding: 10px 10px 10px 30px; border-radius: 5px; background-color: #f88; width:300px;">
-			{foreach $messages as $msg}
-				<li>{$msg}</li>
-			{/foreach}
-			</ol>
-		{/if}
-	{/if}
-
-	{if isset($installment)}
-		<div style="margin: 20px; padding: 10px; border-radius: 5px; background-color: #ff0; width:300px;">
-			Miesięczna rata kredytu: {$installment}
-		</div>
-	{/if}	
+</main>
 {/block}
 
