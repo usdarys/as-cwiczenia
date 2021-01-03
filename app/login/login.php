@@ -1,6 +1,6 @@
 <?php
-require_once dirname(__FILE__) . '/../../config.php';
-require_once _ROOT_PATH . '/utils/utils.php';
+require_once dirname(__FILE__) . '/../../config/config.php';
+require_once _ROOT_PATH . '/vendor/smarty/smarty/libs/Smarty.class.php';
 
 $form = array();
 $messages = array();
@@ -8,10 +8,20 @@ $messages = array();
 getLoginParams($form);
 
 if (!validateLoginParams($form, $messages)) {
-	include 'loginView.php';
+	$smarty = new Smarty;
+
+	$smarty->assign('messages', $messages);
+	$smarty->assign('form', $form);
+	$smarty->assign('appUrl', _APP_URL);
+
+	$smarty->display(dirname(__FILE__) . '/loginView.tpl');
 } else { 
 	header("Location: " . _APP_URL);
 }
+
+// ---------
+// Functions
+// ---------
 
 function getLoginParams(&$form) {
 	$form['login'] = isset ($_REQUEST['login']) ? $_REQUEST['login'] : null;
