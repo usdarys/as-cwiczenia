@@ -5,6 +5,7 @@
 2. Lab 03 - Ochrona dostępu do kalkulatora kredytowego
 3. Lab 04 - Szablon Smarty
 4. Lab 05 - Obiektowość + Kontroler główny
+5. Lab 06 - Nowa struktura + Przestrzenie nazw
 ## Instalacja projektu
 ### Wymagania:
 1. [Apache](https://httpd.apache.org/)

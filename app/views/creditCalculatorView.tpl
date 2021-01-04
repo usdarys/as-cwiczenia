@@ -1,8 +1,8 @@
-{extends file="../shared/template/main.tpl"}
+{extends file="main.tpl"}
 
 {block name=body}
 <nav class="navbar bg-light border-bottom d-flex justify-content-end">
-	<a href="{$appUrl}/app/login/login.php" class="btn btn-link disabled">Wyloguj</a>
+	<a href="" class="btn btn-link disabled">Wyloguj</a>
 </nav>
 
 <main>
@@ -11,19 +11,19 @@
 				<legend class="text-center mb-3">Kalkulator kredytowy</legend>
 				<div class="form-group">
 					<label for="amount">Kwota: </label>
-					<input id="amount" type="text" name="amount" value="{$amount}" class="form-control"/>
+					<input id="amount" type="text" name="amount" value="{$form->amount}" class="form-control"/>
 				</div>
 				<div class="form-group">
 					<label for="numberOfYears">Liczba lat: </label>
-					<input id="numberOfYears" type="text" name="numberOfYears" value="{$numberOfYears}" class="form-control"/>
+					<input id="numberOfYears" type="text" name="numberOfYears" value="{$form->numberOfYears}" class="form-control"/>
 				</div>
 				<div class="form-group">
 					<label for="interest">Oprocentowanie: </label>
-					<input id="interest" type="text" name="interest" value="{$interest}" class="form-control"/>
+					<input id="interest" type="text" name="interest" value="{$form->interest}" class="form-control"/>
 				</div>
 
-				{if !$messages->isEmpty()}
-					{foreach $messages->getItems() as $msg}
+				{if $messages->isError()}
+					{foreach $messages->getErrors() as $msg}
 						<div class="alert alert-danger mb-1">{$msg}</div>
 					{/foreach}
 				{/if}

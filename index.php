@@ -1,4 +1,4 @@
 <?php
-require_once dirname(__FILE__) . '/config/config.php';
+require_once dirname(__FILE__) . '/init.php';
 
-include $conf->rootPath . '/app/mainController.php';
+include getConf()->rootPath . '/app/controllers/mainController.php';
