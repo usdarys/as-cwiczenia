@@ -1,6 +1,13 @@
 <?php
-define('_SERVER_NAME', 'localhost:80');
-define('_SERVER_URL', 'http://' . _SERVER_NAME);
-define('_APP_ROOT', '/as-cwiczenia');
-define('_APP_URL', _SERVER_URL . _APP_ROOT);
-define("_ROOT_PATH", dirname(__DIR__));
+
+require_once dirname(__FILE__) . '/Config.class.php';
+
+$conf = new Config();
+
+$conf->serverName = 'localhost:80';
+$conf->serverUrl = 'http://' . $conf->serverName;
+$conf->appRoot = '/as-cwiczenia';
+$conf->appUrl = $conf->serverUrl . $conf->appRoot;
+$conf->rootPath = dirname(__DIR__);
+$conf->actionRoot = $conf->appRoot . '/app/mainController.php?action=';
+$conf->actionUrl = $conf->serverUrl . $conf->actionRoot;
