@@ -1,6 +1,7 @@
 <?php
+
 require_once dirname(__FILE__) . '/core/Config.class.php';
-$conf = new Config();
+$conf = new core\Config();
 include dirname(__FILE__) . '/config/config.php'; //ustaw konfigurację
 
 function &getConf() { 
@@ -10,7 +11,7 @@ function &getConf() {
 
 //załaduj definicję klasy Messages i stwórz obiekt
 require_once getConf()->rootPath . '/core/Messages.class.php';
-$msgs = new Messages();
+$msgs = new core\Messages();
 
 function &getMessages() { 
     global $msgs; 
@@ -39,5 +40,13 @@ function &getSmarty() {
 }
 
 require_once getConf()->rootPath . '/core/utils.php';
+
+ //załaduj i stwórz loader klas
+require_once getConf()->rootPath . '/core/ClassLoader.class.php';
+$cloader = new core\ClassLoader();
+function &getLoader() {
+    global $cloader;
+    return $cloader;
+}
 
 $action = getRequestParameter('action');

@@ -1,6 +1,8 @@
 <?php
 
-require_once 'CreditCalculatorForm.class.php';
+namespace app\controllers;
+
+use app\forms\CreditCalculatorForm;
 
 class CreditCalculatorController {
 
