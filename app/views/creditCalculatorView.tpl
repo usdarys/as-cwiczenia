@@ -2,12 +2,12 @@
 
 {block name=body}
 <nav class="navbar bg-light border-bottom d-flex justify-content-end">
-	<a href="" class="btn btn-link disabled">Wyloguj</a>
+	<a href="{$conf->actionUrl}logout" class="btn btn-link">Wyloguj</a>
 </nav>
 
 <main>
 	<div class="container d-flex justify-content-center credit-calc-form flex-column">
-			<form action="{$conf->actionRoot}creditCalculator" method="post" class="mt-5 w-100">
+			<form action="{$conf->actionUrl}creditCalculator" method="post" class="mt-5 w-100">
 				<legend class="text-center mb-3">Kalkulator kredytowy</legend>
 				<div class="form-group">
 					<label for="amount">Kwota: </label>
