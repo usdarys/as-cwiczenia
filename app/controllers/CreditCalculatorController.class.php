@@ -14,7 +14,7 @@ class CreditCalculatorController {
         $this->installment = null;
     }
 
-    public function process() {
+    public function creditCalculatorAction() {
         if ($this->validateForm()) {
             $this->calculateCreditInstallment();
         }
@@ -78,8 +78,7 @@ class CreditCalculatorController {
 
     private function generateView() {
         getSmarty()->assign('form', $this->form);
-        getSmarty()->assign('installment', $this->installment);
-        
+        getSmarty()->assign('installment', $this->installment);   
         getSmarty()->display('creditCalculatorView.tpl');
     }
 
