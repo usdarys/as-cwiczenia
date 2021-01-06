@@ -1,10 +1,6 @@
-{extends file="main.tpl"}
+{extends file="navbarView.tpl"}
 
-{block name=body}
-<nav class="navbar bg-light border-bottom d-flex justify-content-end">
-	<a href="{$conf->actionUrl}logout" class="btn btn-link">Wyloguj</a>
-</nav>
-
+{block name=main}
 <main>
 	<div class="container d-flex justify-content-center credit-calc-form flex-column">
 			<form action="{$conf->actionUrl}creditCalculator" method="post" class="mt-5 w-100">
@@ -38,4 +34,3 @@
 	</div>
 </main>
 {/block}
-
