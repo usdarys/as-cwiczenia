@@ -7,6 +7,7 @@
 4. Lab 05 - Obiektowość + Kontroler główny
 5. Lab 06 - Nowa struktura + Przestrzenie nazw
 6. Lab 07 - Ochrona zasobów + routing
+7. Lab 08 - 
 ## Instalacja projektu
 ### Wymagania:
 1. [Apache](https://httpd.apache.org/)

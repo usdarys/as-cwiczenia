@@ -3,6 +3,7 @@
     "description": "Cwiczenia z przedmiotu Aplikacje sieciowe",
     "type": "project",
     "require": {
-        "smarty/smarty": "^3.1"
+        "smarty/smarty": "^3.1",
+        "catfan/medoo": "^1.7"
     }
 }

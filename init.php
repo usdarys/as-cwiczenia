@@ -1,5 +1,13 @@
 <?php
-// załaduj i ustaw konfigurację
+
+// ---------------------------
+// Autoloader paczek composera
+// ---------------------------
+require_once dirname(__FILE__) . '/vendor/autoload.php';
+
+// ------------------------
+// Załadowanie konfiguracji
+// ------------------------
 require_once dirname(__FILE__) . '/core/Config.class.php';
 $conf = new core\Config();
 include dirname(__FILE__) . '/config/config.php'; 
@@ -9,7 +17,9 @@ function &getConf() {
     return $conf; 
 }
 
-// załaduj definicję klasy Messages i stwórz obiekt
+// --------------------
+// Załadowanie Messages
+// --------------------
 require_once getConf()->rootPath . '/core/Messages.class.php';
 $msgs = new core\Messages();
 
@@ -18,14 +28,16 @@ function &getMessages() {
     return $msgs; 
 }
 
-// przygotuj Smarty, twórz tylko raz - wtedy kiedy potrzeba
+// ------------------
+// Załadowanie Smarty
+// ------------------
 $smarty = null;	
 function &getSmarty() {
     global $smarty;
     
 	if (!isset($smarty)) {
 		// stwórz Smarty i przypisz konfigurację i messages
-		include_once getConf()->rootPath . '/vendor/smarty/smarty/libs/Smarty.class.php';
+		//include_once getConf()->rootPath . '/vendor/smarty/smarty/libs/Smarty.class.php';
 		$smarty = new Smarty();	
 		// przypisz konfigurację i messages
 		$smarty->assign('conf', getConf());
@@ -39,9 +51,32 @@ function &getSmarty() {
 	return $smarty;
 }
 
-require_once getConf()->rootPath . '/core/utils.php';
+// -------------------
+// Przygotowanie Medoo
+// -------------------
+$db = null;
+function &getDB() {
+    global $conf, $db;
+    if (!isset($db)) {
+        //require_once 'lib/medoo/Medoo.php';
+        $db = new \Medoo\Medoo([
+            'database_type' => &$conf->db_type,
+            'server' => &$conf->db_server,
+            'database_name' => &$conf->db_name,
+            'username' => &$conf->db_user,
+            'password' => &$conf->db_pass,
+            'charset' => &$conf->db_charset,
+            'port' => &$conf->db_port,
+            'prefix' => &$conf->db_prefix,
+            'option' => &$conf->db_option
+        ]);
+    }
+    return $db;
+}
 
-// załaduj i stwórz loader klas
+// -------------------------
+// Załadowanie Class Loadera
+// -------------------------
 require_once getConf()->rootPath . '/core/ClassLoader.class.php';
 $cloader = new core\ClassLoader();
 function &getLoader() {
@@ -49,16 +84,28 @@ function &getLoader() {
     return $cloader;
 }
 
-// załaduj i stwórz router
+// -------------------
+// Załadowanie Routera
+// -------------------
 require_once getConf()->rootPath . '/core/Router.class.php';
 $router = new core\Router();
 function &getRouter(): core\Router {
     global $router; return $router;
 }
 
-// uruchom lub kontynuuj sesję
+// -----------------
+// Załadowanie Utils
+// -----------------
+require_once getConf()->rootPath . '/core/utils.php';
+
+// ---------------------------
+// Uruchom lub kontynuuj sesję
+// ---------------------------
 session_start(); 
-// wczytaj role
+
+// ------------
+// Wczytaj role
+// ------------
 $conf->roles = isset($_SESSION['_roles']) ? unserialize($_SESSION['_roles']) : array(); 
 
 $router->setAction(getFromRequest('action'));
